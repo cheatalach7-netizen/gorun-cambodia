@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GoRun Cambodia - រត់ដើម្បីសុខភាព និងសហគមន៍</title>
+  
+  <!-- Google Fonts: Kantumruy Pro (Khmer) & Plus Jakarta Sans (English) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏃‍♂️</text></svg>">
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#home" class="brand-logo" id="brand-logo">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13 4v16"></path>
+            <path d="M17 8l4 4-4 4"></path>
+            <path d="M7 16l-4-4 4-4"></path>
+          </svg>
+        </div>
+        <div>GoRun<span class="highlight">Cambodia</span></div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#home" class="nav-link active" data-i18n="nav_home">ទំព័រដើម</a></li>
+        <li><a href="#all-events" class="nav-link" data-i18n="nav_events">ព្រឹត្តិការណ៍ទាំងអស់</a></li>
+        <li><a href="#about" class="nav-link" data-i18n="nav_about">អំពីយើង</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- Language Switcher -->
+        <div class="lang-switch" role="group" aria-label="Language selection">
+          <button class="lang-btn active" id="btn-lang-km" onclick="switchLanguage('km')">ខ្មែរ 🇰🇭</button>
+          <button class="lang-btn" id="btn-lang-en" onclick="switchLanguage('en')">EN 🇬🇧</button>
+        </div>
+
+        <a href="#all-events" class="btn btn-green" data-i18n="nav_find_event">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <span data-i18n="nav_find_event">ស្វែងរកព្រឹត្តិការណ៍</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero-section" id="home">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge-pill">
+          <span>🏃‍♀️</span>
+          <span data-i18n="hero_badge">ស្វាគមន៍មកកាន់ GoRun Cambodia 🇰🇭</span>
+        </div>
+        <h1 class="hero-title" data-i18n="hero_heading">
+          ស្វែងរក និងចូលរួមព្រឹត្តិការណ៍រត់ប្រណាំងដែលអ្នកចូលចិត្ត
+        </h1>
+        <p class="hero-desc" data-i18n="hero_subheading">
+          ពីការរត់សប្បុរសធម៌ ការរត់លើកកម្ពស់សុខភាព រហូតដល់ពាក់កណ្តាលម៉ារ៉ាតុង — ប្រមូលផ្តុំព័ត៌មានលម្អិត និងតំណភ្ជាប់ចុះឈ្មោះផ្លូវការនៅកន្លែងតែមួយ។
+        </p>
+
+        <!-- Quick Search Form -->
+        <form class="hero-search-wrapper" id="hero-search-form" onsubmit="handleHeroSearch(event)">
+          <div class="hero-search-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </div>
+          <input 
+            type="text" 
+            class="hero-search-input" 
+            id="hero-search-input" 
+            placeholder="ស្វែងរកតាមឈ្មោះព្រឹត្តិការណ៍ ឬគោលបំណង (ឧ. សប្បុរសធម៌, មហារីកសុដន់...)"
+            data-i18n-placeholder="hero_search_placeholder"
+          >
+          <button type="submit" class="btn btn-primary" data-i18n="hero_btn_search">
+            ស្វែងរក
+          </button>
+        </form>
+
+        <!-- Quick Category Chips -->
+        <div class="hero-category-pills">
+          <button class="hero-category-pill" data-category="charity" onclick="quickFilterCategory('charity')">
+            ❤️ <span data-i18n="filter_charity">សប្បុរសធម៌</span>
+          </button>
+          <button class="hero-category-pill" data-category="awareness" onclick="quickFilterCategory('awareness')">
+            🎗️ <span data-i18n="filter_awareness">ការយល់ដឹងសុខភាព</span>
+          </button>
+          <button class="hero-category-pill" data-category="marathon" onclick="quickFilterCategory('marathon')">
+            🏅 <span data-i18n="filter_marathon">ម៉ារ៉ាតុង</span>
+          </button>
+          <button class="hero-category-pill" data-category="fun_run" onclick="quickFilterCategory('fun_run')">
+            🎉 <span data-i18n="filter_fun_run">រត់លំហែកាយ (Fun Run)</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- Featured Upcoming Events Section -->
+  <section class="events-section" id="featured-events-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-header-left">
+          <h2 data-i18n="featured_title">ព្រឹត្តិការណ៍លេចធ្លោឆាប់ៗនេះ</h2>
+          <p data-i18n="featured_subtitle">ព្រឹត្តិការណ៍រត់ប្រណាំងធំៗដែលកំពុងបើកទទួលការចុះឈ្មោះ</p>
+        </div>
+        <a href="#all-events" class="btn btn-outline" data-i18n="hero_btn_explore">
+          មើលព្រឹត្តិការណ៍ទាំងអស់ &rarr;
+        </a>
+      </div>
+
+      <div class="events-grid" id="featured-events-grid">
+        <!-- Rendered dynamically via app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- All Events Catalog Section -->
+  <section class="events-section" id="all-events" style="background-color: #f1f5f9;">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-header-left">
+          <h2 data-i18n="all_events_title">ព្រឹត្តិការណ៍រត់ប្រណាំងទាំងអស់</h2>
+          <p data-i18n="all_events_subtitle">បញ្ជីព្រឹត្តិការណ៍រត់ប្រណាំងដែលមាននៅកម្ពុជា</p>
+        </div>
+      </div>
+
+      <!-- Events Catalog Grid -->
+      <div class="events-grid" id="events-grid">
+        <!-- Rendered dynamically via app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section class="about-section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <div class="hero-badge-pill">
+            <span>🇰🇭</span>
+            <span data-i18n="about_title">អំពី GoRun Cambodia</span>
+          </div>
+          <h2 data-i18n="about_mission_heading">តើ GoRun Cambodia ជាអ្វី?</h2>
+          <p data-i18n="about_mission_p1">
+            GoRun Cambodia គឺជាគេហទំព័រដែលប្រមូលផ្តុំព័ត៌មានអំពីព្រឹត្តិការណ៍រត់ប្រណាំងនៅទូទាំងប្រទេសកម្ពុជា។ ខណៈពេលដែលប្រជាជនកម្ពុជាកាន់តែច្រើនចូលចិត្តការរត់តែម្នាក់ឯង ជាមួយមិត្តភក្តិ ឬជាក្រុម គេហទំព័រនេះនឹងជួយឱ្យពួកគេស្វែងរក និងចូលរួមព្រឹត្តិការណ៍ដែលត្រូវនឹងចំណង់ចំណូលចិត្តរបស់ពួកគេ។
+          </p>
+          <p data-i18n="about_mission_p2">
+            ព្រឹត្តិការណ៍ទាំងនេះរួមមានការរត់សប្បុរសធម៌ ការរត់យុទ្ធនាការកាត់បន្ថយជំងឺមហារីកសុដន់ ការរត់លំហែកាយ (Fun Runs) និងសកម្មភាពសហគមន៍ផ្សេងៗ។ គោលដៅចម្បងរបស់យើងគឺអ្នករត់ទូទៅ សិស្ស និស្សិត យុវជន និងអ្នកដែលចង់ចាប់ផ្តើមរត់ដំបូង។
+          </p>
+
+          <div class="values-grid">
+            <div class="value-card">
+              <div class="value-card-icon">⚡</div>
+              <div class="value-card-body">
+                <h4 data-i18n="val_health_title">សុខភាព និងថាមពល (Health & Energy)</h4>
+                <p data-i18n="val_health_desc">លើកទឹកចិត្តអោយពលរដ្ឋគ្រប់រូបមានទម្លាប់ហាត់ប្រាណជាប្រចាំដើម្បីសុខភាពមាំមួន។</p>
+              </div>
+            </div>
+
+            <div class="value-card orange">
+              <div class="value-card-icon">🤝</div>
+              <div class="value-card-body">
+                <h4 data-i18n="val_community_title">សាមគ្គីភាពសហគមន៍ (Community Support)</h4>
+                <p data-i18n="val_community_desc">ជួយគាំទ្រមន្ទីរពេទ្យកុមារគន្ធបុប្ផា និងមូលនិធិសប្បុរសធម៌តាមរយៈការរត់។</p>
+              </div>
+            </div>
+
+            <div class="value-card green-dark">
+              <div class="value-card-icon">📱</div>
+              <div class="value-card-body">
+                <h4 data-i18n="val_accessibility_title">ភាពងាយស្រួល (Accessible for All)</h4>
+                <p data-i18n="val_accessibility_desc">ផ្តល់ព័ត៌មានគួរឱ្យទុកចិត្ត ច្បាស់លាស់ និងគាំទ្រភាសាខ្មែរពេញលេញសម្រាប់អ្នកគ្រប់គ្នា។</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-sidebar">
+          <div class="organizer-callout">
+            <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📣</div>
+            <h3 data-i18n="submit_event_heading">តើលោកអ្នកជាអ្នករៀបចំកម្មវិធីមែនទេ?</h3>
+            <p data-i18n="submit_event_sub">
+              ផ្ញើព័ត៌មានព្រឹត្តិការណ៍រត់ប្រណាំងរបស់អ្នក ដើម្បីផ្សព្វផ្សាយលើ GoRun Cambodia ដោយឥតគិតថ្លៃ។
+            </p>
+            <button class="btn btn-primary" onclick="openOrganizerModal()" style="width: 100%;" data-i18n="submit_btn">
+              ទំនាក់ទំនងផ្ញើព័ត៌មាន
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-logo">
+          <div class="brand-icon" style="width: 36px; height: 36px;">🏃</div>
+          <div>GoRun<span style="color: var(--accent-orange);">Cambodia</span></div>
+        </div>
+        <div>
+          <span style="color: #cbd5e1; font-weight: 600;" data-i18n="tagline">វេទិកាប្រមូលផ្តុំព្រឹត្តិការណ៍រត់ប្រណាំងនៅកម្ពុជា</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p data-i18n="footer_text">© 2026 GoRun Cambodia — រក្សាសិទ្ធិគ្រប់យ៉ាង។ កសាងឡើងដើម្បីសហគមន៍កីឡាកម្ពុជា។</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Event Details Modal -->
+  <div class="modal-backdrop" id="event-modal-backdrop" onclick="handleModalBackdropClick(event)">
+    <div class="modal-content" id="event-modal-content">
+      <button class="modal-close-btn" onclick="closeEventModal()" aria-label="Close modal">✕</button>
+      
+      <div class="modal-banner">
+        <img id="modal-img" src="" alt="Event Banner">
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-category-tag" id="modal-category">សប្បុរសធម៌</div>
+        <h2 class="modal-title" id="modal-title">ចំណងជើងព្រឹត្តិការណ៍</h2>
+        
+        <div class="modal-purpose-banner" id="modal-purpose">
+          គោលបំណងព្រឹត្តិការណ៍
+        </div>
+
+        <div class="modal-grid-info">
+          <div class="modal-info-item">
+            <div class="modal-info-icon">📅</div>
+            <div>
+              <div class="modal-info-label" data-i18n="date">កាលបរិច្ឆេទ</div>
+              <div class="modal-info-value" id="modal-date">-</div>
+            </div>
+          </div>
+
+          <div class="modal-info-item">
+            <div class="modal-info-icon">⏰</div>
+            <div>
+              <div class="modal-info-label" data-i18n="time">ម៉ោង</div>
+              <div class="modal-info-value" id="modal-time">-</div>
+            </div>
+          </div>
+
+          <div class="modal-info-item">
+            <div class="modal-info-icon">📍</div>
+            <div>
+              <div class="modal-info-label" data-i18n="location">ទីតាំង</div>
+              <div class="modal-info-value" id="modal-location">-</div>
+            </div>
+          </div>
+
+          <div class="modal-info-item">
+            <div class="modal-info-icon">⏳</div>
+            <div>
+              <div class="modal-info-label" data-i18n="deadline">ផុតកំណត់ចុះឈ្មោះ</div>
+              <div class="modal-info-value" id="modal-deadline">-</div>
+            </div>
+          </div>
+
+          <div class="modal-info-item" style="grid-column: 1 / -1;">
+            <div class="modal-info-icon">🏢</div>
+            <div>
+              <div class="modal-info-label" data-i18n="organizer">រៀបចំដោយ</div>
+              <div class="modal-info-value" id="modal-organizer">-</div>
+            </div>
+          </div>
+        </div>
+
+        <h4 style="margin-bottom: 0.75rem; font-weight: 700;" data-i18n="fee">តម្លៃចុះឈ្មោះតាមចម្ងាយនីមួយៗ</h4>
+        <table class="modal-distances-table">
+          <thead>
+            <tr>
+              <th data-i18n="distances">ចម្ងាយរត់</th>
+              <th>USD ($)</th>
+              <th>KHR (៛)</th>
+            </tr>
+          </thead>
+          <tbody id="modal-fees-tbody">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+
+        <h4 style="margin-bottom: 0.5rem; font-weight: 700;">ការពិពណ៌នា</h4>
+        <p class="modal-description" id="modal-description">
+          ព័ត៌មានពិពណ៌នាព្រឹត្តិការណ៍...
+        </p>
+
+        <div class="modal-actions">
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="modal-register-btn" style="padding: 1rem; font-size: 1.05rem;">
+            <span data-i18n="join_event">ចុះឈ្មោះឥឡូវនេះ (តំណភ្ជាប់ផ្លូវការ)</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          </a>
+          <p class="modal-external-notice" data-i18n="external_notice">
+            ការចុះឈ្មោះនឹងត្រូវធ្វើឡើងតាមរយៈតំណភ្ជាប់ផ្លូវការរបស់អ្នករៀបចំកម្មវិធី
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Organizer Contact Modal -->
+  <div class="modal-backdrop" id="organizer-modal-backdrop" onclick="handleOrganizerBackdropClick(event)">
+    <div class="modal-content" style="max-width: 500px;">
+      <button class="modal-close-btn" onclick="closeOrganizerModal()" aria-label="Close modal">✕</button>
+      <div style="padding: 2rem;">
+        <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 0.5rem;" data-i18n="submit_event_heading">តើលោកអ្នកជាអ្នករៀបចំកម្មវិធីមែនទេ?</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;" data-i18n="submit_event_sub">
+          ផ្ញើព័ត៌មានព្រឹត្តិការណ៍រត់ប្រណាំងរបស់អ្នក ដើម្បីផ្សព្វផ្សាយលើ GoRun Cambodia ដោយឥតគិតថ្លៃ។
+        </p>
+        <form onsubmit="handleOrganizerSubmit(event)">
+          <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.3rem;">ឈ្មោះស្ថាប័ន / ឈ្មោះអ្នករៀបចំ</label>
+              <input type="text" class="filter-input" required placeholder="ឧ. NOCC, Run Club..." style="width: 100%;">
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.3rem;">អ៊ីមែល ឬលេខតេឡេក្រាម (Telegram)</label>
+              <input type="text" class="filter-input" required placeholder="contact@goruncambodia.org or @telegram" style="width: 100%;">
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.3rem;">ឈ្មោះព្រឹត្តិការណ៍ & កាលបរិច្ឆេទ</label>
+              <textarea class="filter-input" rows="3" required placeholder="សេចក្តីសង្ខេបអំពីព្រឹត្តិការណ៍..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-green" style="width: 100%;">
+              ផ្ញើព័ត៌មាន / Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/events.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
